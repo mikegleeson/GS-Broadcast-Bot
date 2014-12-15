@@ -740,12 +740,12 @@ var GU = {
 	},
   'ask8ball': function(current) 
    {
-	    if (!eventSilence || GU.guestOrWhite(current.userID)) // is guest
+	    if (GU.guestOrWhite(current.userID) || !eventSilence) // is guest
         {
 			var _8ballin = (Math.random()*100);
 			
-			if(_8ballin < 11) {
-				GU.sendMsg(userName+" the 8ball says: No.");
+			if(_8ballin == 1) {
+				GU.sendMsg(userName+" the 8ball says: No, Never -Ever-.");
 			} else if(_8ballin < 11) {
 				GU.sendMsg(userName+" the 8ball says: It's not looking good.");
 			} else if(_8ballin < 21) {
@@ -976,7 +976,7 @@ actionTable = {
     'unguestAll':           [[GU.inBroadcast, GU.whiteListCheck],       GU.unguestAll,           '- Unguest everyone.'],
     'about':                [[GU.inBroadcast],                          GU.about,                '- About this software.'],
     'roll':                 [[GU.inBroadcast],                          GU.rollDice,             '- Roll a d100.'],
-    '8ball':				[[GU.inBroadcast],							GU.ask8ball,			 '- ask the mysterious 8ball a question.'],
+    '8ball':				[[GU.inBroadcast],							GU.ask8ball,			 '- ask the mysterious 8ball a question.'], 
 	'wa':                   [[GU.inBroadcast],                          GU.wolframAlpha,         '- Ask Wolfram|Alpha a question.'],
     'records':              [[GU.inBroadcast],                          GU.showRecords,          '- shows the Broadcasts Record Information'],
     'startContest':         [[GU.inBroadcast, GU.guestOrWhite],	        GU.startContest,         '- starts a Contest'], 
